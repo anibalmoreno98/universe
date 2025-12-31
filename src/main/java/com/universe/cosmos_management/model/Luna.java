@@ -41,5 +41,41 @@ public class Luna {
         this.tiene_crateres = tiene_crateres;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getDiametro() {
+        return diametro;
+    }
+
+    public void setDiametro(double diametro) {
+        this.diametro = diametro;
+    }
+
+    public boolean isTiene_crateres() {
+        return tiene_crateres;
+    }
+
+    public void setTiene_crateres(boolean tiene_crateres) {
+        this.tiene_crateres = tiene_crateres;
+    }
+
+    public Planeta getPlaneta() {
+        return planeta;
+    }
+
+    public void setPlaneta(Planeta planeta) {
+        this.planeta = planeta;
+    }
+
     
 }

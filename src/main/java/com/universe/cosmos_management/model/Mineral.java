@@ -37,6 +37,34 @@ public class Mineral {
         this.es_solido = es_solido;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public double getDensidad() {
+        return densidad;
+    }
+
+    public void setDensidad(double densidad) {
+        this.densidad = densidad;
+    }
+
+    public boolean isEs_solido() {
+        return es_solido;
+    }
+
+    public void setEs_solido(boolean es_solido) {
+        this.es_solido = es_solido;
+    }
+
+    public List<Planeta> getPlanetas() {
+        return planetas;
+    }
+
+    public void setPlanetas(List<Planeta> planetas) {
+        this.planetas = planetas;
+    }
+
     
     
 }

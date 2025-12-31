@@ -51,12 +51,66 @@ public class Planeta {
     public Planeta() {
     }
 
-    public Planeta(int id, boolean es_gaseoso, int tamanho, String nombre) {
+    public Planeta(int id, String nombre, int tamanho, boolean es_gaseoso) {
         this.id = id;
-        this.es_gaseoso = es_gaseoso;
+        this.nombre = nombre;
         this.tamanho = tamanho;
+        this.es_gaseoso = es_gaseoso;
+        
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public boolean isEs_gaseoso() {
+        return es_gaseoso;
+    }
+
+    public void setEs_gaseoso(boolean es_gaseoso) {
+        this.es_gaseoso = es_gaseoso;
+    }
+
+    public int getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(int tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    public Galaxia getGalaxia() {
+        return galaxia;
+    }
+
+    public void setGalaxia(Galaxia galaxia) {
+        this.galaxia = galaxia;
+    }
+
+    public List<Luna> getLunas() {
+        return lunas;
+    }
+
+    public void setLunas(List<Luna> lunas) {
+        this.lunas = lunas;
+    }
+
+    public List<Mineral> getMinerales() {
+        return minerales;
+    }
+
+    public void setMinerales(List<Mineral> minerales) {
+        this.minerales = minerales;
+    }
+
+    
     
 }

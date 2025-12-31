@@ -37,5 +37,33 @@ public class Galaxia {
         this.nombre = nombre;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Planeta> getPlanetas() {
+        return planetas;
+    }
+
+    public void setPlanetas(List<Planeta> planetas) {
+        this.planetas = planetas;
+    }
+
     
 }
