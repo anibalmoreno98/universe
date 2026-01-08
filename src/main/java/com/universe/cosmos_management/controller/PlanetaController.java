@@ -1,8 +1,11 @@
 package com.universe.cosmos_management.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
+import com.universe.cosmos_management.model.Mineral;
 import com.universe.cosmos_management.model.Planeta;
 import com.universe.cosmos_management.service.PlanetaService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,4 +72,18 @@ public class PlanetaController {
         model.addAttribute("deleted", deleted);
         return "planetaDelete";
     }
+
+    // listar planetas de una galaxia ordenados en orden descendiente
+    @GetMapping("/galaxia/{codigo}/ordenados")
+    public List<Planeta> getPlanetasOrdenados(@PathVariable int codigo) {
+        return ps.getPlanetasByGalaxiaOrdenados(codigo);
+    }
+
+    // listar minerales de un planeta
+    @GetMapping("/{id}/minerales")
+    public List<Mineral> getMinerales(@PathVariable int id) {
+        return ps.getMineralesDePlaneta(id);
+    }
+
+
 }

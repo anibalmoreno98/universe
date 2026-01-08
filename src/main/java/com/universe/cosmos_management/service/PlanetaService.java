@@ -1,8 +1,11 @@
 package com.universe.cosmos_management.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.universe.cosmos_management.model.Galaxia;
+import com.universe.cosmos_management.model.Mineral;
 import com.universe.cosmos_management.model.Planeta;
 import com.universe.cosmos_management.repository.GalaxiaRepository;
 import com.universe.cosmos_management.repository.PlanetaRepository;
@@ -71,4 +74,16 @@ public class PlanetaService {
             return false;
         }
     }
+
+    public List<Planeta> getPlanetasByGalaxiaOrdenados(int codigoGalaxia) {
+    return pr.findByGalaxiaCodigoOrderByTamanhoDesc(codigoGalaxia);
+    }
+
+    public List<Mineral> getMineralesDePlaneta(int planetaId) {
+        Planeta p = pr.findById(planetaId).orElse(null);
+        if (p == null) return null;
+        return p.getMinerales();
+    }
+
+
 }
