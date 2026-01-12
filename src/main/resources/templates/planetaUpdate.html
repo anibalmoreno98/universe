@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar planeta</title>
+</head>
+<body>
+
+    <h1>Actualizar planeta</h1>
+
+    <th:block th:if="${updated == false}">
+        <p>No se ha podido actualizar el planeta.</p>
+    </th:block>
+
+    <th:block th:if="${updated == true}">
+        <p>El planeta ha sido actualizado correctamente.</p>
+    </th:block>
+
+</body>
+</html>

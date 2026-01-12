@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Planeta</title>
+</head>
+<body>
+
+    <h1>Planeta</h1>
+
+    <p th:if="${planeta == null}">
+        No se ha encontrado el planeta.
+    </p>
+
+    <div th:if="${planeta != null}">
+        <p th:text="${planeta.nombre}"></p>
+    </div>
+
+</body>
+</html>

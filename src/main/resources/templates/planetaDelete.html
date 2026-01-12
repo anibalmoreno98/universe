@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar planeta</title>
+</head>
+<body>
+
+    <h1>Eliminar planeta</h1>
+
+    <th:block th:if="${deleted == false}">
+        <p>No se ha podido eliminar el planeta.</p>
+    </th:block>
+
+    <th:block th:if="${deleted == true}">
+        <p>El planeta ha sido eliminado correctamente.</p>
+    </th:block>
+
+</body>
+</html>
