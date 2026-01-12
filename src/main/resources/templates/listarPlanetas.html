@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Planetas</title>
+</head>
+<body>
+
+    <h1>Planetas</h1>
+
+    <p th:if="${planetas == null or #lists.isEmpty(planetas)}">
+        No hay planetas.
+    </p>
+
+    <div th:if="${planetas != null and !#lists.isEmpty(planetas)}">
+        <p th:each="p : ${planetas}" th:text="${p.nombre}"></p>
+    </div>
+
+</body>
+</html>

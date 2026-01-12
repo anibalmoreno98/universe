@@ -75,14 +75,16 @@ public class PlanetaController {
 
     // listar planetas de una galaxia ordenados en orden descendiente
     @GetMapping("/galaxia/{codigo}/ordenados")
-    public List<Planeta> getPlanetasOrdenados(@PathVariable int codigo) {
-        return ps.getPlanetasByGalaxiaOrdenados(codigo);
+    public String getPlanetasOrdenados(@PathVariable int codigo, Model model) {
+        model.addAttribute("planetas", ps.getPlanetasByGalaxiaOrdenados(codigo));
+        return "listarPlanetas";
     }
 
     // listar minerales de un planeta
     @GetMapping("/{id}/minerales")
-    public List<Mineral> getMinerales(@PathVariable int id) {
-        return ps.getMineralesDePlaneta(id);
+    public String getMinerales(@PathVariable int id, Model model) {
+        model.addAttribute("minerales", ps.getMineralesDePlaneta(id));
+        return "listarMinerales";
     }
 
 

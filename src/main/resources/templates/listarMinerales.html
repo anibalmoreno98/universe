@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Minerales</title>
+</head>
+<body>
+
+    <h1>Minerales</h1>
+
+    <p th:if="${minerales == null or #lists.isEmpty(minerales)}">
+        No hay minerales.
+    </p>
+
+    <div th:if="${minerales != null and !#lists.isEmpty(minerales)}">
+        <p th:each="m : ${minerales}" th:text="${m.nombre}"></p>
+    </div>
+
+</body>
+</html>
