@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.universe.cosmos_management.service.MoviesService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -31,10 +30,16 @@ public class MoviesController {
 
     @GetMapping("/read/{title}")
     public String readMovie(@PathVariable String title, Model model) {
-        model.AddAttribute("pelicula", this.moviesService.readMovie(title));
-        return "movieShow";
+        model.addAttribute("peliculas", this.moviesService.readMovie(title));
+        return "movieList";
     }
-    
+
+    @GetMapping("/delete/{title}")
+    public String delete(@PathVariable String title, Model model) {
+        model.addAttribute("borrada", this.moviesService.deleteMovie(title));
+        model.addAttribute("titulo", title);
+        return "movieErase";
+    }
     
     
 }

@@ -1,5 +1,8 @@
 package com.universe.cosmos_management.service;
 
+import java.util.List;
+
+import org.bson.Document;
 import org.springframework.stereotype.Service;
 
 import com.universe.cosmos_management.repository.MoviesRepository;
@@ -17,10 +20,13 @@ public class MoviesService {
         return this.moviesRepository.insertar(titulo, duracion);
     }
 
-    public Object readMovie(String title) {
-    
-
+    public List<Document> readMovie(String title) {
+        
         return this.moviesRepository.leer(title);
+    }
+
+    public boolean deleteMovie (String title) {
+        return this.moviesRepository.borrar(title);
     }
 
 }

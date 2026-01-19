@@ -10,8 +10,12 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
 import static com.mongodb.client.model.Filters.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class MoviesRepository {
@@ -36,11 +40,10 @@ public class MoviesRepository {
 
         crearCliente();
 
-        Document pelicula = new Document("titulo", titulo)
-            .append("duracion", 120);
+        Document pelicula = new Document("title", titulo).append("runtime", 120).append("duracion", 120);
 
         MongoDatabase baseDeDatos = this.cliente.getDatabase("sample_mflix");
-        MongoCollection peliculas = baseDeDatos.getCollection("movies");
+        MongoCollection<Document> peliculas = baseDeDatos.getCollection("movies");
 
         InsertOneResult result = peliculas.insertOne(pelicula);
 
@@ -53,21 +56,37 @@ public class MoviesRepository {
         }
     }
 
-    public Object leer(String title) {
+    
+    public List<Document> leer(String title) {
         crearCliente();
 
         MongoDatabase baseDeDatos = this.cliente.getDatabase("sample_mflix");
-        MongoCollection peliculas = baseDeDatos.getCollection("movies");
+        MongoCollection<Document> peliculas = baseDeDatos.getCollection("movies");
 
-        Bson equalComparison = eq("titulo", title);
+        Bson equalComparison = eq("title", title);
 
-
-        peliculas.find(equalComparison);
+        ArrayList<Document> resultado = new ArrayList<>();
+        peliculas.find(equalComparison).forEach(resultado::add);;
 
         desconectar();
-
-        return "";
+        return resultado;
     }
 
-    
+    public boolean borrar (String title) {
+        crearCliente();
+
+        MongoDatabase baseDeDatos = this.cliente.getDatabase("sample_mflix");
+        MongoCollection<Document> peliculas = baseDeDatos.getCollection("movies");
+
+        Bson equalComparison = eq("title", title);
+
+        DeleteResult resultado = peliculas.deleteOne(equalComparison);
+
+        desconectar();
+        
+        if (resultado.wasAcknowledged() && resultado.getDeletedCount() > 0) {
+            return true;
+        }
+        return false;
+    }
 }
