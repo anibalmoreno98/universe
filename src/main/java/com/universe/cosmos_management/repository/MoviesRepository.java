@@ -21,6 +21,7 @@ import java.util.List;
 public class MoviesRepository {
 
     MongoClient cliente = null;
+    MongoCollection<Document> peliculas = null;
 
     private void crearCliente() {
         this.cliente = MongoClients.create(
@@ -34,6 +35,14 @@ public class MoviesRepository {
         if (this.cliente!=null) {
             this.cliente.close();
         }
+    }
+
+    private void conseguirColeccion(){
+        crearCliente();
+
+        MongoDatabase baseDeDatos = this.cliente.getDatabase("sample_mflix");
+        this.peliculas = baseDeDatos.getCollection("movies");
+
     }
 
     public String insertar (String titulo, int duracion) {

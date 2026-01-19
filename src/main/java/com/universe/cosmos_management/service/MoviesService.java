@@ -21,7 +21,6 @@ public class MoviesService {
     }
 
     public List<Document> readMovie(String title) {
-        
         return this.moviesRepository.leer(title);
     }
 
