@@ -12,7 +12,10 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
+import com.mongodb.client.result.UpdateResult;
+
 import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Updates.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +98,34 @@ public class MoviesRepository {
         
         if (resultado.wasAcknowledged() && resultado.getDeletedCount() > 0) {
             return true;
+        }
+        return false;
+    }
+
+    public boolean anhadirIdioma (String title, String idioma) {
+        conseguirColeccion();
+
+        Bson equalCompaBson = eq("title", title);
+        UpdateResult resultado = peliculas.updateOne(equalCompaBson, addToSet("languages", idioma));
+
+        desconectar();
+        if (resultado.wasAcknowledged() && resultado.getModifiedCount()>0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean modificarPelicula(int year, String productor) {
+        conseguirColeccion();
+
+        UpdateResult resultado = peliculas.updateOne(eq("year", year),
+                                combine(set("productor", productor),
+                                currentDate("lastupdated")));
+        
+        desconectar();
+
+        if (resultado.wasAcknowledged()) {
+            return resultado.getModifiedCount() == 1;
         }
         return false;
     }

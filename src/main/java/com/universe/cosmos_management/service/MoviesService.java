@@ -28,4 +28,12 @@ public class MoviesService {
         return this.moviesRepository.borrar(title);
     }
 
+    public boolean addLanguage (String title, String language) {
+        return this.moviesRepository.anhadirIdioma(title, language);
+    }
+
+    public boolean modificarPelicula(String title, String productor) {
+        return this.moviesRepository.modificarPelicula(0, productor);
+    }
+
 }
