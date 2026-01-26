@@ -115,10 +115,10 @@ public class MoviesRepository {
         return false;
     }
 
-    public boolean modificarPelicula(int year, String productor) {
+    public boolean modificarPelicula(String title, String productor) {
         conseguirColeccion();
 
-        UpdateResult resultado = peliculas.updateOne(eq("year", year),
+        UpdateResult resultado = peliculas.updateOne(eq("title", title),
                                 combine(set("productor", productor),
                                 currentDate("lastupdated")));
         

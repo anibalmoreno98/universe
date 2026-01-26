@@ -54,6 +54,4 @@ public class MoviesController {
         model.addAttribute("actualizado", this.moviesService.modificarPelicula(title, productor));
         return "modifyAndAddProducer";
     }
-    
-    
 }

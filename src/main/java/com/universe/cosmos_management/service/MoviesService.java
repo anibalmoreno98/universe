@@ -33,7 +33,7 @@ public class MoviesService {
     }
 
     public boolean modificarPelicula(String title, String productor) {
-        return this.moviesRepository.modificarPelicula(0, productor);
+        return this.moviesRepository.modificarPelicula(title, productor);
     }
 
 }
