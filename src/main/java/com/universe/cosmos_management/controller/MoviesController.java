@@ -47,7 +47,7 @@ public class MoviesController {
     }
     
     @GetMapping("/addLanguage/{title}/{language}")
-    public String getMethodName(@PathVariable String title, @PathVariable String language, Model model) {
+    public String anhadirLanguage(@PathVariable String title, @PathVariable String language, Model model) {
         model.addAttribute("actualizado", this.moviesService.addLanguage(title, language));
         return "movieUpdated";
     }
@@ -64,19 +64,19 @@ public class MoviesController {
         return "movieAddSponsor";
     }
     
-    @GetMapping("/movies/{title}/{documento}")
+    @GetMapping("/anhadirDocumento/{title}/{documento}")
     public String anhadirDocumento(@PathVariable String title, Document documento, Model model) {
         model.addAttribute("actualizado", this.moviesService.anhadirDocumento(title, documento));
         return "moviesAddDocument";
     }
     
-    @GetMapping("/movies/{title}/{propiedad}")
+    @GetMapping("/eliminarPropiedad/{title}/{propiedad}")
     public String eliminarPropiedad(@PathVariable String title, String propiedad, Model model) {
         model.addAttribute("borrada", this.moviesService.eliminarPropiedad(title, propiedad));
-        return new String();
+        return "moviesEliminarPropiedad";
     }
     
-    @GetMapping("/movies/{title}/{propiedadArray}/{valor}")
+    @GetMapping("/eliminarValorArray/{title}/{propiedadArray}/{valor}") // 1. funciona. 2. @Pathvariable para todos
     public String eliminarValorArray(@PathVariable String title,
                                     @PathVariable String propiedadArray,        // ejemplo: languages
                                     @PathVariable String valor,                 // ejemplo: English
