@@ -1,5 +1,8 @@
 package com.universe.cosmos_management.controller;
 
+import java.util.ArrayList;
+
+import org.bson.Document;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +54,20 @@ public class MoviesController {
 
     @GetMapping("/modifyAndAddProducer/{title}/{productor}")
     public String modifyAndAddProducer(@PathVariable String title, @PathVariable String productor, Model model) {
-        model.addAttribute("actualizado", this.moviesService.modificarPelicula(title, productor));
+        model.addAttribute("actualizado", this.moviesService.modificarPeliculaYAnhadirProductor(title, productor));
         return "modifyAndAddProducer";
     }
+
+    @GetMapping("/addSponsor/{title}/{sponsor}")
+    public String anhadirSponsor(@PathVariable String title, ArrayList<String> sponsor, Model model) {
+        model.addAttribute("actualizado", this.moviesService.anhadirSponsor(title, sponsor));
+        return "movieAddSponsor";
+    }
+    
+    @GetMapping("/movies/{title}/{documento}")
+    public String anhadirDocumento(@PathVariable String title, Document documento, Model model) {
+        model.addAttribute("actualizado", this.moviesService.anhadirDocumento(title, documento));
+        return "moviesAddDocument";
+    }
+    
 }

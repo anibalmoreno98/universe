@@ -115,7 +115,8 @@ public class MoviesRepository {
         return false;
     }
 
-    public boolean modificarPelicula(String title, String productor) {
+    // añade nueva propiedad tipo string: productor
+    public boolean modificarPeliculaYAnhadirProductor(String title, String productor) {
         conseguirColeccion();
 
         UpdateResult resultado = peliculas.updateOne(eq("title", title),
@@ -126,6 +127,43 @@ public class MoviesRepository {
 
         if (resultado.wasAcknowledged()) {
             return resultado.getModifiedCount() == 1;
+        }
+        return false;
+    }
+
+
+    // añade nueva propiedad tipo array: sponsor
+    public boolean anhadirSponsor (String title, ArrayList<String> sponsor ) {
+        conseguirColeccion();
+
+        UpdateResult resultado = peliculas.updateOne(
+                                eq("title", title),
+                                combine(
+                                    set("sponsor", sponsor),        // crea la propiedad sponsor como array
+                                    currentDate("lastupdated")));
+
+        desconectar();
+
+        if (resultado.wasAcknowledged() && resultado.getModifiedCount()>0) {
+            return true;
+        }
+        return false;
+    }
+
+    // añade nueva propiedad tipo documento: documento
+    public boolean anhadirDocumento (String title, Document documento) {
+        conseguirColeccion();
+
+        UpdateResult resultado = peliculas.updateOne(
+                                eq("title", title),
+                                combine(
+                                    set("documento", documento),
+                                    currentDate("lastupdated")));
+
+        desconectar();
+
+        if (resultado.wasAcknowledged() && resultado.getModifiedCount()>0) {
+            return true;
         }
         return false;
     }

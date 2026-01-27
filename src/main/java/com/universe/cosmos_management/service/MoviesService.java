@@ -1,5 +1,6 @@
 package com.universe.cosmos_management.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
@@ -32,8 +33,15 @@ public class MoviesService {
         return this.moviesRepository.anhadirIdioma(title, language);
     }
 
-    public boolean modificarPelicula(String title, String productor) {
-        return this.moviesRepository.modificarPelicula(title, productor);
+    public boolean modificarPeliculaYAnhadirProductor(String title, String productor) {
+        return this.moviesRepository.modificarPeliculaYAnhadirProductor(title, productor);
     }
 
+    public boolean anhadirSponsor(String title, ArrayList<String> sponsor) {
+        return this.moviesRepository.anhadirSponsor(title, null);
+    }
+
+    public boolean anhadirDocumento (String title, Document documento) {
+        return this.moviesRepository.anhadirDocumento(title, documento);
+    }
 }

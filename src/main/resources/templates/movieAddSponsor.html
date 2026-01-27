@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir sponsor</title>
+</head>
+<body>
+    <h1>Añadir sponsor</h1>
+
+    <div th:if="${actualizado}">
+        <p>El sponsor <span th:text="${sponsor}"></span> se ha añadido con éxito.</p>
+    </div>
+        <div th:if="${!actualizado}">
+        <p>El sponsor <span th:text="${sponsor}"></span> no se ha añadido.</p>
+    </div>
+</body>
+</html>
