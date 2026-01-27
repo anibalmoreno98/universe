@@ -70,4 +70,25 @@ public class MoviesController {
         return "moviesAddDocument";
     }
     
+    @GetMapping("/movies/{title}/{propiedad}")
+    public String eliminarPropiedad(@PathVariable String title, String propiedad, Model model) {
+        model.addAttribute("borrada", this.moviesService.eliminarPropiedad(title, propiedad));
+        return new String();
+    }
+    
+    @GetMapping("/movies/{title}/{propiedadArray}/{valor}")
+    public String eliminarValorArray(@PathVariable String title,
+                                    @PathVariable String propiedadArray,        // ejemplo: languages
+                                    @PathVariable String valor,                 // ejemplo: English
+                                    Model model) {
+
+        boolean borrada = this.moviesService.eliminarValorArray(title, propiedadArray, valor);
+
+        model.addAttribute("borrada",borrada);
+        model.addAttribute("propiedadArray", propiedadArray);
+        model.addAttribute("valor", valor);
+
+        return "moviesEliminarPropiedadArray";
+    }
+    
 }

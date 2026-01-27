@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar propiedad</title>
+</head>
+<body>
+    <h1>Eliminar propiedad</h1>
+
+    <div th:if="${borrada}">
+        <p>La propiedad <span th:text="${propiedad}"></span> ha sido eliminada con éxito.</p>
+    </div>
+        <div th:if="${!borrada}">
+        <p>La propiedad <span th:text="${propiedad}"></span> no se ha eliminado.</p>
+    </div>
+</body>
+</html>

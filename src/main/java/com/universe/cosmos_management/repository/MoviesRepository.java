@@ -167,4 +167,44 @@ public class MoviesRepository {
         }
         return false;
     }
+
+    // eliminar propiedad 
+    public boolean eliminarPropiedad (String title, String propiedad) {
+        conseguirColeccion();
+
+        UpdateResult resultado = peliculas.updateOne(
+            eq("title", title),
+            combine(
+                unset(propiedad),            // elimina la propiedad indicada
+                currentDate("lastupdated")
+            )
+        );
+
+        desconectar();
+
+        if (resultado.wasAcknowledged() && resultado.getModifiedCount()>0) {
+            return true;
+        }
+        return false;
+    }
+
+    // eliminar un valor del array de una propiedad
+    public boolean eliminarValorArray (String title, String propiedadDelArray, String valor ) {
+        conseguirColeccion();
+
+        UpdateResult resultado = peliculas.updateOne(
+            eq("title", title),
+            combine(
+                pull(propiedadDelArray, valor),      // elimina el valor dentro del array
+                currentDate("lastupdated")           // ejemplo: propiedadDelArray seria languages y valor seria English
+                )
+            );
+
+        desconectar();
+
+        if (resultado.wasAcknowledged() && resultado.getModifiedCount()>0) {
+            return true;
+        }
+        return false;
+    }
 }

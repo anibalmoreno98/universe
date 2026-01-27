@@ -44,4 +44,12 @@ public class MoviesService {
     public boolean anhadirDocumento (String title, Document documento) {
         return this.moviesRepository.anhadirDocumento(title, documento);
     }
+
+    public boolean eliminarPropiedad (String title, String propiedad) {
+        return this.moviesRepository.eliminarPropiedad(title, propiedad);
+    }
+
+    public boolean eliminarValorArray (String title, String propiedadArray, String valor) {
+        return this.moviesRepository.eliminarValorArray(title, propiedadArray, valor);
+    }
 }
