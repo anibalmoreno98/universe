@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.universe.cosmos_management.service.MoviesService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 
 @Controller
@@ -47,36 +45,52 @@ public class MoviesController {
     }
     
     @GetMapping("/addLanguage/{title}/{language}")
-    public String anhadirLanguage(@PathVariable String title, @PathVariable String language, Model model) {
+    public String addLanguage(@PathVariable String title,
+                                @PathVariable String language,
+                                Model model) {
         model.addAttribute("actualizado", this.moviesService.addLanguage(title, language));
-        return "movieUpdated";
+        return "movieAddLanguage";
     }
 
-    @GetMapping("/modifyAndAddProducer/{title}/{productor}")
-    public String modifyAndAddProducer(@PathVariable String title, @PathVariable String productor, Model model) {
-        model.addAttribute("actualizado", this.moviesService.modificarPeliculaYAnhadirProductor(title, productor));
-        return "modifyAndAddProducer";
+    @GetMapping("/addProducer/{title}/{productor}")
+    public String addProducer(@PathVariable String title,
+                                @PathVariable String productor,
+                                Model model) {
+        model.addAttribute("actualizado", this.moviesService.addProducer(title, productor));
+        return "movieAddProducer";
     }
 
     @GetMapping("/addSponsor/{title}/{sponsor}")
-    public String anhadirSponsor(@PathVariable String title, ArrayList<String> sponsor, Model model) {
+    public String anhadirSponsor(@PathVariable String title,
+                                @PathVariable ArrayList<String> sponsor,
+                                Model model) {
         model.addAttribute("actualizado", this.moviesService.anhadirSponsor(title, sponsor));
         return "movieAddSponsor";
     }
     
-    @GetMapping("/anhadirDocumento/{title}/{documento}")
-    public String anhadirDocumento(@PathVariable String title, Document documento, Model model) {
-        model.addAttribute("actualizado", this.moviesService.anhadirDocumento(title, documento));
+    @GetMapping("/addDocument/{title}/{key}/{value}")
+    public String addDocument(@PathVariable String title,
+                                @PathVariable String key,       // ejemplo: ayudantes
+                                @PathVariable String value,     // ejemplo: alfonso
+                                Model model) {
+
+        Document documento = new Document(key, value);
+
+        model.addAttribute("actualizado", moviesService.addDocument(title, documento));
+        model.addAttribute("documento", documento);
+
         return "moviesAddDocument";
     }
     
     @GetMapping("/eliminarPropiedad/{title}/{propiedad}")
-    public String eliminarPropiedad(@PathVariable String title, String propiedad, Model model) {
+    public String eliminarPropiedad(@PathVariable String title,
+                                    @PathVariable String propiedad,
+                                    Model model) {
         model.addAttribute("borrada", this.moviesService.eliminarPropiedad(title, propiedad));
         return "moviesEliminarPropiedad";
     }
     
-    @GetMapping("/eliminarValorArray/{title}/{propiedadArray}/{valor}") // 1. funciona. 2. @Pathvariable para todos
+    @GetMapping("/eliminarValorArray/{title}/{propiedadArray}/{valor}")
     public String eliminarValorArray(@PathVariable String title,
                                     @PathVariable String propiedadArray,        // ejemplo: languages
                                     @PathVariable String valor,                 // ejemplo: English

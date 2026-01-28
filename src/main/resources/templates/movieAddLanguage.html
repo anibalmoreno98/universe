@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir idioma</title>
+</head>
+<body>
+    <h1>Añadir idioma</h1>
+    <div th:if="${actualizado}">
+        <p>A la película <span th:text="${title}"></span> se le ha añadido el idioma <span th:text="${language}"></span> con éxito.</p>
+    </div>
+        <div th:if="${!actualizado}">
+        <p>A la película <span th:text="${title}"></span> NO se le ha añadido el idioma <span th:text="${language}"></span>.</p>
+    </div>
+</body>
+</html>

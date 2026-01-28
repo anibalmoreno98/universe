@@ -102,7 +102,7 @@ public class MoviesRepository {
         return false;
     }
 
-    public boolean anhadirIdioma (String title, String idioma) {
+    public boolean addLanguage (String title, String idioma) {
         conseguirColeccion();
 
         Bson equalCompaBson = eq("title", title);
@@ -116,7 +116,7 @@ public class MoviesRepository {
     }
 
     // añade nueva propiedad tipo string: productor
-    public boolean modificarPeliculaYAnhadirProductor(String title, String productor) {
+    public boolean addProducer(String title, String productor) {
         conseguirColeccion();
 
         UpdateResult resultado = peliculas.updateOne(eq("title", title),
@@ -151,7 +151,7 @@ public class MoviesRepository {
     }
 
     // añade nueva propiedad tipo documento: documento
-    public boolean anhadirDocumento (String title, Document documento) {
+    public boolean addDocument (String title, Document documento) {
         conseguirColeccion();
 
         UpdateResult resultado = peliculas.updateOne(

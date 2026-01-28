@@ -30,19 +30,19 @@ public class MoviesService {
     }
 
     public boolean addLanguage (String title, String language) {
-        return this.moviesRepository.anhadirIdioma(title, language);
+        return this.moviesRepository.addLanguage(title, language);
     }
 
-    public boolean modificarPeliculaYAnhadirProductor(String title, String productor) {
-        return this.moviesRepository.modificarPeliculaYAnhadirProductor(title, productor);
+    public boolean addProducer(String title, String productor) {
+        return this.moviesRepository.addProducer(title, productor);
     }
 
     public boolean anhadirSponsor(String title, ArrayList<String> sponsor) {
         return this.moviesRepository.anhadirSponsor(title, null);
     }
 
-    public boolean anhadirDocumento (String title, Document documento) {
-        return this.moviesRepository.anhadirDocumento(title, documento);
+    public boolean addDocument (String title, Document documento) {
+        return this.moviesRepository.addDocument(title, documento);
     }
 
     public boolean eliminarPropiedad (String title, String propiedad) {
